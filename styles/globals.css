@@ -14,3 +14,18 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "SF Pro Regular";
+  src: url("../public/fonts/SFPRODISPLAYREGULAR.OTF");
+}
+
+@font-face {
+  font-family: "SF Pro Thin";
+  src: url("../public/fonts/SF-Pro-Display-Thin.otf");
+}
+
+@font-face {
+  font-family: "SF Pro Medium";
+  src: url("../public/fonts/SFPRODISPLAYMEDIUM.OTF");
+}

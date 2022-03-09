@@ -1,0 +1,15 @@
+.content-container{
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 84px;
+  background-color: #101010;
+
+  h1 {
+    color: white;
+    font-family: "SF Pro Regular";
+    letter-spacing: 2px;
+    font-size: 2.3rem;
+  }
+}

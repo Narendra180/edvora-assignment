@@ -1,0 +1,58 @@
+.rides-details-container {
+  padding: 25px 35px;
+  background-color: #424242;
+  // background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+  height: calc(100vh - 84px);
+  overflow: hidden;
+
+  :global .tab-panel {
+    padding: 0 16px;
+    margin-top: 16px;
+    height: calc(100vh - 180px);
+    overflow: auto;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #888; 
+      border-radius: 10px;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: white; 
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #d4d4d4; 
+    }
+  }
+  
+  :global .filter-btn-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 45px;
+    top: 25px;
+    min-height: 48px;
+    
+    button {
+      color: white;
+      font-weight: 500;
+      font-family: Inter;
+      font-size: 1rem;
+    }
+  
+    :global .icon-span {
+      margin-right: 10px;
+    }
+  }
+}
+

@@ -1,0 +1,22 @@
+.user-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    color: white;
+    font-family: 'Inter', sans-serif;  
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-right: 20px;
+  }
+}
+
+.image-container {
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+}

@@ -1,0 +1,31 @@
+.tabs-component-container {
+  :global .MuiButtonBase-root {
+    color: #D0CBCB;
+    font-family: Inter;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  :global .MuiButtonBase-root.Mui-selected {
+    color: white;
+  }
+
+  :global .MuiTabs-indicator {
+    display: flex;
+    justify-content: center; 
+    background-color: transparent;
+    bottom: 5px;
+  }
+
+  :global .MuiTabs-indicatorSpan {
+    max-width: calc(100% - 32px);
+    width: 100%;
+    background-color: white;
+  }
+}
+// background-color: white;
+    // max-width: 60px;
+    // width: 100%;

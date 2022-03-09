@@ -1,0 +1,26 @@
+
+.popover-container {
+  :global .MuiPaper-root {
+    background-color: #131313;
+    // background-color: #ffffff;
+    color: white;
+    width: 230px;
+    height: 200px;
+    border-radius: 14px;
+    padding: 10px 14px;
+  }
+}
+
+.state-city-dropdowns-container {
+  h2 {
+    font-family: "SF Pro Thin";
+    font-size: 1.25rem;
+    font-weight: 100;
+    border-bottom: 1px solid #CBCBCB;
+    margin: 0;
+    margin-bottom: 14px;
+    padding: 10px;
+    color: #A5A5A5;
+  }
+  
+}
