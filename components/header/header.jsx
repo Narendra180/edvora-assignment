@@ -2,7 +2,7 @@ import UserDetails from "../user-details/user-deatils";
 import styles from "./header.module.scss";
 
 function Header({user,rides}) {
-	console.log("user log from header",user,rides)
+	// console.log("user log from header",user,rides);
 	return (
 		<>
 			<header> 

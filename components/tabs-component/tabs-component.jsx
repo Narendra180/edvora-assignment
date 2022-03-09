@@ -7,7 +7,6 @@ import TabPanel from '../tab-panel/tab-panel';
 import Ride from '../ride/ride';
 
 function TabsComponent({rides}) {
-  console.log(styles)
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -34,8 +33,8 @@ function TabsComponent({rides}) {
 
       <TabPanel value={value} index={0} sx={{padding: "16px"}}>
         {
-          rides.map(ridesObj => {
-            return <Ride rideData={ridesObj}/>
+          rides.map((ridesObj,i) => {
+            return <Ride key={i} rideData={ridesObj}/>
           })
         }
       </TabPanel>

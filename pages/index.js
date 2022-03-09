@@ -2,6 +2,7 @@ import { useState,useEffect,useRef } from 'react';
 import Header from '../components/header/header';
 import Head from 'next/head';
 import RidesDetails from '../components/rides-details/rides-details';
+import { getNearestRides,getUpComingRides } from '../utils/classify-rides';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
   
   useEffect(() => {
       fetchData();
-      console.log(state);
+      // console.log(state);
   }, []);
 
   const fetchData = async () => {
@@ -37,7 +38,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header user={state.user} rides={state.rides}/>
-      <RidesDetails rides={state.rides}/>
+      <RidesDetails rides={getUpComingRides(state.rides,state.user.station_code)}/>
 
     </div>
   )

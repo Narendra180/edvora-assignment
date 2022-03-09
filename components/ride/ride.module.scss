@@ -3,15 +3,18 @@
   background-color: #171717;
   border-radius: 10px;
   padding: 20px;
+  padding-bottom: 16px;
   margin-bottom: 14px;
   font-family: "Inter", sans-serif;
   color: #CFCFCF;
 
   display: flex;
   justify-content: space-between;
+  // align-items: center;
 
   :global .ride-map-data-container {
     display: flex;
+    align-items: center;
 
     .map-img {
       width: 300px;

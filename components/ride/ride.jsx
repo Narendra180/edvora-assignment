@@ -29,7 +29,7 @@ function Ride({rideData}) {
 
             <div>
               <dt>Station Path:</dt>
-              <dd>{rideData?.station_path}</dd>
+              <dd>{(rideData?.station_path)?`[${rideData.station_path.toString()}]`:""}</dd>
             </div>
 
             <div>
@@ -39,7 +39,7 @@ function Ride({rideData}) {
 
             <div>
               <dt>Distance:</dt>
-              <dd>0</dd>
+              <dd>{rideData?.distance}</dd>
             </div>
           </dl>
         </div>
@@ -49,14 +49,16 @@ function Ride({rideData}) {
         className="city-state-container"
       >
         <table className="city-state-table">
-          <tr>
-            <th><span>City Name</span></th>
-            <th><span>State Name</span></th>
-          </tr>
-          <tr>
-            <td>{rideData?.city}</td>
-            <td>{rideData?.state}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th><span>City Name</span></th>
+              <th><span>State Name</span></th>
+            </tr>
+            <tr>
+              <td>{rideData?.city}</td>
+              <td>{rideData?.state}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
