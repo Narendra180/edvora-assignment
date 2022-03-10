@@ -5,17 +5,27 @@ import styles from "./filter-btn-popover.module.scss";
 import SelectDropdown from '../select-dropdown/select-dropdown';
 
 
-function FilterButtonPopover() {
+function FilterButtonPopover({countryStates,cities,onCityChange}) {
   const [anchorEl, setAnchorEl] = useState(null);
-  
-  const handleClick = (event) => {
+  const handleFilterButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const handleClose = () => {
+  const handlePopoverClose = () => {
     setAnchorEl(null);
   };
+  const [countryStateSelected,setCountryStateSelected] = useState("");
+  const [citySelected,setCitySelected] = useState("");
+  // console.log(countryStates[0],countryStateSelected)
+  const handleCountryStateChange = (e) => {
+    setCountryStateSelected(e.target.value);
+    setCitySelected("");
+  }
 
+  const handleCityStateChange = (e) => {
+    setCitySelected(e.target.value);
+    onCityChange({state: countryStateSelected,city: e.target.value});
+  }
+  
   const open = Boolean(anchorEl);
   const id = open ? 'filter-popover' : undefined;
 
@@ -25,7 +35,7 @@ function FilterButtonPopover() {
     >
       <Button 
         variant="text"
-        onClick={handleClick}
+        onClick={handleFilterButtonClick}
       >
         <span
           className="icon-span"
@@ -38,7 +48,7 @@ function FilterButtonPopover() {
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        onClose={handlePopoverClose}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
@@ -53,8 +63,19 @@ function FilterButtonPopover() {
           className={styles["state-city-dropdowns-container"]}
         >
           <h2>Filters</h2>
-          <SelectDropdown />
-          <SelectDropdown />
+          <SelectDropdown 
+            label="State"
+            menuItemsList={countryStates}
+            handleChange={handleCountryStateChange}
+            selectedValue={countryStateSelected}
+          />
+
+          <SelectDropdown 
+            label="City"
+            menuItemsList={countryStateSelected?cities[countryStateSelected]:""}
+            handleChange={handleCityStateChange}
+            selectedValue={citySelected}
+          />
 
         </div>
       </Popover>

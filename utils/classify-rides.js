@@ -71,3 +71,96 @@ export function getClassifiedRides(rides,userStationCode) {
 
   return {};
 }
+
+
+// export function getStatesAndCities(rides) {
+//   let statesAndCitiesObject = {
+//     states: []
+//   }
+
+//   rides.forEach((ride) => {
+//     let stateObjectFoundAtIndex = null;
+//     let isStateAlreadyPresent = statesAndCitiesObject.states.find((stateObject,i) => {
+//       stateObjectFoundAtIndex = i;
+//       return stateObject.name === ride.state;
+//     });
+
+//     if(!isStateAlreadyPresent) {
+//       statesAndCitiesObject.states.push({
+//         name: ride.state,
+//         cities: [{name: ride.city}]
+//       })
+//     }
+
+//     if(isStateAlreadyPresent) {
+//       let isCityAlreadyPresent = isStateAlreadyPresent.cities.find((city,i) => {
+//         return city.name === ride.city;
+//       })
+
+//       if(!isCityAlreadyPresent) {
+//         statesAndCitiesObject.states[stateObjectFoundAtIndex].cities.push({name: ride.city});
+//       }
+//     }
+
+//   });
+//   console.log(statesAndCitiesObject);
+//   return statesAndCitiesObject;
+// }
+
+
+export function getStatesAndCities(rides) {
+  let statesAndCitiesObject = {
+    states: [],
+    cities: {}
+  }
+
+  rides.forEach((ride) => {
+    const { states,cities } = statesAndCitiesObject;
+    let isStateAlreadyPresent = states.find(stateObject => {
+      return stateObject.name === ride.state;
+    });
+
+    if(!isStateAlreadyPresent) {
+      states.push({name: ride.state});
+    }
+
+    if(cities.hasOwnProperty(ride.state)) {
+      let isCityAlreadyPresent = cities[ride.state].find(cityObject => {
+        return cityObject.name === ride.city;
+      });
+      if(!isCityAlreadyPresent) {
+        cities[ride.state].push({name: ride.city})
+      }
+    } else {
+      cities[ride.state] = [{name: ride.city}]
+    }
+  })
+
+  // console.log(statesAndCitiesObject);
+  return statesAndCitiesObject;
+}
+
+
+export const getFilteredRides = ({state,city,rides}) => {
+  const filteredNearestRides = rides.nearestRides.filter((ride) => {
+    return ride.state === state && ride.city === city;
+  });
+
+  const filteredUpComingRides = rides.upComingRides.filter((ride) => {
+    return ride.state === state && ride.city === city;
+  });
+  const filteredPastRides = rides.pastRides.filter((ride) => {
+    return ride.state === state && ride.city === city;
+  });
+  
+  // console.log( {
+  //   nearestRides: filteredNearestRides,
+  //   upComingRides: filteredUpComingRides,
+  //   pastRides: filteredPastRides
+  // })
+  return {
+    nearestRides: filteredNearestRides,
+    upComingRides: filteredUpComingRides,
+    pastRides: filteredPastRides
+  }
+}

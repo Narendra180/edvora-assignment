@@ -46,3 +46,42 @@
     }
   }
 }
+
+.state-city-select-menu {
+  height: 300px;
+
+  :global .MuiPaper-root {
+    background-color: #313131;
+    color: white;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 9px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #888; 
+      border-radius: 10px;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: white; 
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #d4d4d4; 
+    }
+  }
+
+  :global .MuiMenuItem-root:hover {
+    background-color: #242424;
+  }
+
+  :global .MuiMenuItem-root.Mui-selected {
+    background-color: black;
+  }
+}

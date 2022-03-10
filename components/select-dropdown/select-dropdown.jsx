@@ -1,31 +1,44 @@
-import { useState } from "react";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import styles from "./select-dropdown.module.scss";
 
-function SelectDropdown() {
+function SelectDropdown({label, menuItemsList, handleChange, selectedValue}) {
 
-  const [countryState,setCountryState] = useState("");
-
-  const handleCountryStateChange = (event) => {
-    setCountryState(event.target.value);
-  }
+  const menuProps = {
+    className:styles["state-city-select-menu"]
+  };
 
   return (
     <FormControl className={styles["form-control-root"]} fullWidth>
-      <InputLabel id="select-label">State</InputLabel>
+      <InputLabel id="select-label">{label?label:"label"}</InputLabel>
       <Select
         labelId="selectd-value-label"
         id="select-root"
-        value={countryState}
-        label="State"
-        onChange={handleCountryStateChange}
+        value={selectedValue}
+        label={label?label:"label"}
+        onChange={handleChange}
+        MenuProps={menuProps}
       >
-        <MenuItem value={"Andhra Pradesh"}>Andhra Pradesh</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {
+          menuItemsList
+          ?
+          menuItemsList.map((item) => {
+            return (
+              <MenuItem 
+                key={item.name} 
+                value={item.name}
+              >
+                {item.name}
+              </MenuItem>
+            ) 
+          })
+          :
+          [].map((item,i) => {
+            return <MenuItem key={i} value={item}>{item}</MenuItem>
+          })
+        }
       </Select>
     </FormControl>
   );

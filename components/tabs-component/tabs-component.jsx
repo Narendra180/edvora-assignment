@@ -27,19 +27,19 @@ function TabsComponent({rides: {nearestRides,upComingRides,pastRides}}) {
           }
         >
           <Tab label="Nearest Rides" disableRipple/>
-          <Tab label={`Upcoming Rides(${upComingRides.length})`} disableRipple/>
-          <Tab label={`Past Rides(${pastRides.length})`} disableRipple/>
+          <Tab label={`Upcoming Rides(${upComingRides?.length})`} disableRipple/>
+          <Tab label={`Past Rides(${pastRides?.length})`} disableRipple/>
         </Tabs>
       </Box>
 
       <TabPanel value={value} index={0} sx={{padding: "16px"}}>
         {
-          nearestRides.map((ridesObj,i) => {
+          nearestRides?.map((ridesObj,i) => {
             return <Ride key={i} rideData={ridesObj}/>
           })
         }
         {
-          (nearestRides.length === 0)
+          (nearestRides?.length === 0)
           ?
             <p>There are no Nearest Rides</p>
           :
@@ -48,12 +48,12 @@ function TabsComponent({rides: {nearestRides,upComingRides,pastRides}}) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         {
-          upComingRides.map((ridesObj,i) => {
+          upComingRides?.map((ridesObj,i) => {
             return <Ride key={i} rideData={ridesObj}/>
           })
         }
         {
-          (upComingRides.length === 0)
+          (upComingRides?.length === 0)
           ?
             <p>There are no Upcoming Rides</p>
           :
@@ -62,12 +62,12 @@ function TabsComponent({rides: {nearestRides,upComingRides,pastRides}}) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         {
-          pastRides.map((ridesObj,i) => {
+          pastRides?.map((ridesObj,i) => {
             return <Ride key={i} rideData={ridesObj}/>
           })
         }
         {
-          (pastRides.length === 0)
+          (pastRides?.length === 0)
           ?
             <p>There are no Past Rides</p>
           :
