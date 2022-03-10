@@ -6,7 +6,8 @@ import styles from "./tabs-component.module.scss";
 import TabPanel from '../tab-panel/tab-panel';
 import Ride from '../ride/ride';
 
-function TabsComponent({rides}) {
+function TabsComponent({rides: {nearestRides,upComingRides,pastRides}}) {
+  // console.log(nearestRides);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -26,28 +27,52 @@ function TabsComponent({rides}) {
           }
         >
           <Tab label="Nearest Rides" disableRipple/>
-          <Tab label="Upcoming Rides" disableRipple/>
-          <Tab label="Past Rides" disableRipple/>
+          <Tab label={`Upcoming Rides(${upComingRides.length})`} disableRipple/>
+          <Tab label={`Past Rides(${pastRides.length})`} disableRipple/>
         </Tabs>
       </Box>
 
       <TabPanel value={value} index={0} sx={{padding: "16px"}}>
         {
-          rides.map((ridesObj,i) => {
+          nearestRides.map((ridesObj,i) => {
             return <Ride key={i} rideData={ridesObj}/>
           })
         }
+        {
+          (nearestRides.length === 0)
+          ?
+            <p>There are no Nearest Rides</p>
+          :
+          ""
+        }
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Ride />
-        <Ride />
-        <Ride />
+        {
+          upComingRides.map((ridesObj,i) => {
+            return <Ride key={i} rideData={ridesObj}/>
+          })
+        }
+        {
+          (upComingRides.length === 0)
+          ?
+            <p>There are no Upcoming Rides</p>
+          :
+          ""
+        }
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Ride />
-        <Ride />
-        <Ride />
-        <Ride />
+        {
+          pastRides.map((ridesObj,i) => {
+            return <Ride key={i} rideData={ridesObj}/>
+          })
+        }
+        {
+          (pastRides.length === 0)
+          ?
+            <p>There are no Past Rides</p>
+          :
+          ""
+        }
       </TabPanel>
 
 

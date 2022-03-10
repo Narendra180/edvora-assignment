@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
+import styles from "./tab-panel.module.scss";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -10,10 +11,10 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`tabpanel-${index}`}
       {...other}
-      className="tab-panel"
+      className={"tab-panel"}
     >
       {value === index && (
-        <div>
+        <div className={styles["inner-div"]}>
           {children}
         </div>
       )}

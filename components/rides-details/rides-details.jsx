@@ -3,7 +3,6 @@ import TabsComponent from "../tabs-component/tabs-component";
 import FilterButtonPopover from "../filter-btn-popover/filter-btn-popover";
 
 function RidesDetails({rides}) {
-  
   return (
     <div
       className={styles["rides-details-container"]}

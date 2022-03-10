@@ -2,14 +2,19 @@ import { useState,useEffect,useRef } from 'react';
 import Header from '../components/header/header';
 import Head from 'next/head';
 import RidesDetails from '../components/rides-details/rides-details';
-import { getNearestRides,getUpComingRides } from '../utils/classify-rides';
+import { getClassifiedRides } from '../utils/classify-rides';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
   
   const [state,setState] = useState({
     user: {},
-    rides: []
+    rides: [],
+    classifiedRides: {
+      nearestRides: [],
+      upComingRides: [],
+      pastRides: []
+    }
   });
   
   useEffect(() => {
@@ -23,7 +28,8 @@ export default function Home() {
       const user = await userResponse.json();
       const ridesResponse = await fetch("https://assessment.api.vweb.app/rides");
       const rides = await ridesResponse.json();
-      setState({...state,user: user, rides: rides});
+      const classifiedRides = getClassifiedRides(rides,user.station_code);
+      setState({...state,user, rides, classifiedRides});
     } catch(err) {
       console.log(err);
       setTimeout(fetchData,10000);
@@ -38,7 +44,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header user={state.user} rides={state.rides}/>
-      <RidesDetails rides={getUpComingRides(state.rides,state.user.station_code)}/>
+      <RidesDetails rides={state.classifiedRides}/>
 
     </div>
   )

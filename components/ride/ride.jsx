@@ -1,4 +1,5 @@
 import styles from "./ride.module.scss";
+import { formatTime } from "../../utils/format-time";
 
 function Ride({rideData}) {
   return (
@@ -34,7 +35,15 @@ function Ride({rideData}) {
 
             <div>
               <dt>Date:</dt>
-              <dd>{rideData?.date}</dd>
+              <dd>
+                {
+                  (rideData?.date)
+                  ?
+                  formatTime(rideData.date)
+                  :
+                  ""
+                }
+              </dd>
             </div>
 
             <div>

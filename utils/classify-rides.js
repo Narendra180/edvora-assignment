@@ -1,7 +1,5 @@
-export function findRideDistances(rides,userStationCode) {
-
-  // if(userStationCode && rides) {
-    let arr = rides.map((ride) => {
+function findRideDistances(rides,userStationCode) {
+  let arr = rides.map((ride) => {
       let distance = -1;
       const {station_path: stationCodeArray} = ride;
 
@@ -24,34 +22,52 @@ export function findRideDistances(rides,userStationCode) {
          }
        }
     });
-    return arr;
-  // }
-
-  // return [];
-  
+  return arr;
 }
 
 export function getNearestRides(rides,userStationCode) {
-  if(userStationCode && rides) {
-    const rideDistancesArray = findRideDistances(rides,userStationCode);
-    rideDistancesArray.sort((a,b) => a.distance - b.distance);
-    return rideDistancesArray;
-  }
-
-  return [];
+  const rideDistancesArray = findRideDistances(rides,userStationCode);
+  rideDistancesArray.sort((a,b) => a.distance - b.distance);
+  return rideDistancesArray;
 }
 
-export function getUpComingRides(rides,userStationCode) {
-  const nrides = getNearestRides(rides,userStationCode);
+export function getUpComingRides(rides) {
+  // const nrides = getNearestRides(rides,userStationCode);
   const currentDate = new Date();
   const upComingRides = [];
-  nrides.forEach((ride) => {
-    console.log(new Date(ride.date))
+  rides.forEach((ride) => {
     const rideDate = new Date(ride.date);
     if(rideDate > currentDate) {
       upComingRides.push(ride);
     }
   });
-  console.log(upComingRides);
   return upComingRides;
+}
+
+export function getPastRides(rides) {
+  // const nrides = getNearestRides(rides,userStationCode);
+  const currentDate = new Date();
+  const pastRides = [];
+  rides.forEach((ride) => {
+    const rideDate = new Date(ride.date);
+    if(rideDate < currentDate) {
+      pastRides.push(ride);
+    }
+  });
+  return pastRides;
+}
+
+export function getClassifiedRides(rides,userStationCode) {
+  if(rides && userStationCode) {
+    const nearestRides = getNearestRides(rides,userStationCode);
+    const upComingRides = getUpComingRides(nearestRides);
+    const pastRides = getPastRides(nearestRides);
+    return {
+      nearestRides,
+      upComingRides,
+      pastRides
+    };
+  }
+
+  return {};
 }
