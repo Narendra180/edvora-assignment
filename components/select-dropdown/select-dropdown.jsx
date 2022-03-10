@@ -11,7 +11,7 @@ function SelectDropdown({label, menuItemsList, handleChange, selectedValue}) {
   };
 
   return (
-    <FormControl className={styles["form-control-root"]} fullWidth>
+    <FormControl id={styles["form-control-root"]} className={styles["form-control-root"]} fullWidth>
       <InputLabel id="select-label">{label?label:"label"}</InputLabel>
       <Select
         labelId="selectd-value-label"
